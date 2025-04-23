@@ -18,7 +18,9 @@ using System.Threading.Tasks;
         internal static string attack = "attack";
         internal static string canMove = "canMove";
         internal static string hasTarget = "hasTarget";
-        internal static string isAlive = "isAlive";
+        internal static string isAlive = "isAlive";   
+        internal static string lockVelocity = "lockVelocity";
+        internal static string hitTrigger = "hit";    
 
 
 }

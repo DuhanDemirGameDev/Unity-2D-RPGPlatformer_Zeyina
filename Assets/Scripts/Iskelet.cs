@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[RequireComponent(typeof(Rigidbody2D), typeof(TouchingDirections))]
+[RequireComponent(typeof(Rigidbody2D), typeof(TouchingDirections), typeof(Damageable))]
 public class Iskelet : MonoBehaviour
 {
     public float walkSpeed = 3f;
@@ -20,6 +20,7 @@ public class Iskelet : MonoBehaviour
 
     public DetectionZone attackZone;
     public DetectionZone cliffZone;
+    Damageable damageable;
 
     Animator animator;
     public WalkableDirection WalkDirection
@@ -75,6 +76,7 @@ public class Iskelet : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         touchingDirections = GetComponent<TouchingDirections>();
         animator = GetComponent<Animator>();
+        damageable = GetComponent<Damageable>();
     }
 
     private void Update()
@@ -93,19 +95,29 @@ public class Iskelet : MonoBehaviour
             }
         }
 
-        if (CanMove)
+        if(!damageable.LockVelocity)
         {
-            rb.velocity = new Vector2(walkSpeed * walkDirectionVector.x, rb.velocity.y);
+            if (CanMove)
+            {
+                rb.velocity = new Vector2(walkSpeed * walkDirectionVector.x, rb.velocity.y);
+            }
+            else
+            {
+                rb.velocity= new Vector2(Mathf.Lerp(rb.velocity.x, 0, walkStopRate), rb.velocity.y);
+            }
         }
-        else
-        {
-            rb.velocity= new Vector2(Mathf.Lerp(rb.velocity.x, 0, walkStopRate), rb.velocity.y);
-        }
+
+       
     }
 
     private void FlipDirection()
     {
         // Yön deðiþtir
         WalkDirection = (WalkDirection == WalkableDirection.Right) ? WalkableDirection.Left : WalkableDirection.Right;
+    }
+
+    public void OnHit(int damage, Vector2 knockback)
+    {
+        rb.velocity = new Vector2( knockback.x, rb.velocity.y + knockback.y);
     }
 }

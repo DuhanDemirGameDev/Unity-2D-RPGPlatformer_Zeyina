@@ -80,12 +80,12 @@ PolygonCollider2D:
     - - {x: 1.0049479, y: 0.8800062}
       - {x: 2.1293285, y: 0.039363623}
       - {x: 2.228779, y: -0.50094056}
-      - {x: 1.9583751, y: -0.98164314}
-      - {x: 0.73214716, y: -1.3489895}
-      - {x: 0.5727865, y: -1.6489732}
-      - {x: 1.396118, y: -1.4970511}
-      - {x: 1.8064075, y: -1.4143924}
-      - {x: 2.4172285, y: -1.2832814}
+      - {x: 2.130631, y: -0.7328256}
+      - {x: 1.7082772, y: -0.966194}
+      - {x: 1.6637549, y: -1.0173606}
+      - {x: 2.0660105, y: -1.1716747}
+      - {x: 2.5145788, y: -1.1847162}
+      - {x: 2.9148622, y: -1.0153253}
       - {x: 3.0606763, y: -0.92369723}
       - {x: 3.156012, y: -0.4751109}
       - {x: 3.0841155, y: -0.10612766}
@@ -105,6 +105,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   attackDamaage: 10
+  knockback: {x: 3, y: 0}
 --- !u!1 &1043177187173459895
 GameObject:
   m_ObjectHideFlags: 0
@@ -435,6 +436,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2398c705fbd7f7740bf6b0d33887747e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  damagableHit:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 835023661579526800}
+        m_TargetAssemblyTypeName: Iskelet, Assembly-CSharp
+        m_MethodName: OnHit
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   _maxHealth: 100
   _health: 100
   isInvincible: 0
